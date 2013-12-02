@@ -30,9 +30,7 @@
             <a class="brand" href="/">Charlie Knudsen</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class="${(params.controller == 'post')? 'active' : ''}"><g:link controller="post" action="list">Posts</g:link></li>
-                    <li class="${(params.controller == 'about')? 'active' : ''}"><g:link controller="about">About</g:link></li>
-                    <li><a href="https://github.com/charliek">GitHub</a></li>
+                    <li class="active"><g:link controller="admin" action="index">Admin Home</g:link></li>
                 </ul>
             </div>
         </div>

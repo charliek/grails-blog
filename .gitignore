@@ -2,6 +2,8 @@
 *.iml
 *.ipr
 *.log
+*.class
+*.jar
 .project
 .classpath
 
@@ -14,5 +16,7 @@
 eclipse
 target
 /plugins
+/logs
+/out
 /web-app/plugins
 /web-app/WEB-INF/classes

@@ -2,8 +2,8 @@ grails.servlet.version = "2.5" // Change depending on target container complianc
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 // uncomment (and adjust settings) to fork the JVM to isolate classpaths
@@ -17,7 +17,7 @@ grails.project.dependency.resolution = {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
@@ -30,34 +30,39 @@ grails.project.dependency.resolution = {
 
         mavenLocal()
         mavenCentral()
-
-        // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "http://dl.bintray.com/content/charliek/maven"
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
-        // runtime 'mysql:mysql-connector-java:5.1.22'
+        test 'org.spockframework:spock-grails-support:0.7-groovy-2.0'
+//        test 'cglib:cglib-nodep:2.2.2'
+//        test 'org.objenesis:objenesis:1.2'
+
+        compile('com.github.charliek.service:blog-api:0.0.1') {
+            excludes group: 'org.codehaus.groovy', module: 'groovy-all'
+        }
+
+//        compile 'org.pegdown:pegdown:1.4.1'
+        compile 'com.google.guava:guava:15.0'
+        compile 'joda-time:joda-time:2.3'
+
+        compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
+        compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.2.3'
+
+        compile 'com.netflix.rxjava:rxjava-core:0.15.0'
+        compile 'com.squareup.retrofit:retrofit:1.3.0'
+        compile 'com.squareup.retrofit:retrofit-converters:1.3.0'
+        compile 'com.squareup.retrofit:converter-jackson:1.3.0'
+        compile 'com.squareup.okhttp:okhttp:1.2.1'
     }
 
     plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.3"
-        runtime ":resources:1.2"
-
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.5"
-
+        test(':spock:0.7') {
+            exclude 'spock-grails-support'
+        }
+        compile ":fields:1.3"
         build ":tomcat:$grailsVersion"
-
-        runtime ":database-migration:1.3.2"
-
-        compile ':cache:1.0.1'
     }
 }
