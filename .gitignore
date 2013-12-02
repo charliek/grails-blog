@@ -3,7 +3,6 @@
 *.ipr
 *.log
 *.class
-*.jar
 .project
 .classpath
 
