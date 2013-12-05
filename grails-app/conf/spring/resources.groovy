@@ -1,3 +1,4 @@
+import charliek.blog.Variables
 import charliek.blog.client.HttpClient
 import charliek.blog.client.HttpConfiguration
 import charliek.blog.client.ObjectMapperFactory
@@ -22,7 +23,7 @@ beans = {
     httpConfiguration(HttpConfiguration) {
         connectionTimeOut = grailsApplication.config.httpClientConfig.connectionTimeOut
         readTimeout = grailsApplication.config.httpClientConfig.readTimeout
-        proxyUrl = grailsApplication.config.httpClientConfig.proxyUrl
+        proxyUrl = Variables.substituteEnvironment(grailsApplication.config.httpClientConfig.proxyUrl, grailsApplication.config.defaultEnvironment)
     }
 
     httpClient(HttpClient, ref('httpConfiguration'))
@@ -53,7 +54,7 @@ beans = {
     }
 
     grailsApplication.config.clients.each { name, config ->
-        String clientUrl = config.url
+        String clientUrl = Variables.substituteEnvironment(config.url, grailsApplication.config.defaultEnvironment)
         config.apis.each { apiClassPath ->
             Class apiClass = grailsApplication.classLoader.loadClass(apiClassPath)
             "${GrailsNameUtils.getPropertyName(apiClass)}"(MethodInvokingFactoryBean) { bean ->

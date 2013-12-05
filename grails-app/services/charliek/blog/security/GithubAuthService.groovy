@@ -1,5 +1,6 @@
 package charliek.blog.security
 
+import charliek.blog.Variables
 import charliek.blog.client.GithubApi
 import charliek.blog.client.GithubTokenApi
 import charliek.blog.transfer.github.AccessToken
@@ -7,6 +8,7 @@ import charliek.blog.transfer.github.User
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import org.codehaus.groovy.grails.commons.GrailsApplication
+import org.springframework.beans.factory.InitializingBean
 import retrofit.RetrofitError
 
 import javax.servlet.http.Cookie
@@ -14,7 +16,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 import java.util.concurrent.TimeUnit
 
-class GithubAuthService {
+class GithubAuthService implements InitializingBean {
 
     static transactional = false
 
@@ -24,6 +26,9 @@ class GithubAuthService {
     GrailsApplication grailsApplication
     GithubApi githubApi
     GithubTokenApi githubTokenApi
+
+    private String clientId
+    private String clientSecret
 
     private Cache<String, User> userCache = CacheBuilder.newBuilder()
             .maximumSize(100)
@@ -63,7 +68,6 @@ class GithubAuthService {
     }
 
     AccessToken getAccessToken(String code) {
-        String clientSecret = grailsApplication.config.github.clientSecret
         return githubTokenApi.lookupAccessToken(clientId, clientSecret, code)
     }
 
@@ -76,7 +80,9 @@ class GithubAuthService {
         return "${grailsApplication.config.github.reauthenticateUrl}?client_id=${clientId}&scope=${applicationScope}"
     }
 
-    private String getClientId() {
-        return grailsApplication.config.github.clientID
+    @Override
+    void afterPropertiesSet() throws Exception {
+        this.clientId = Variables.substituteEnvironment(grailsApplication.config.github.clientID)
+        this.clientSecret = Variables.substituteEnvironment(grailsApplication.config.github.clientSecret)
     }
 }

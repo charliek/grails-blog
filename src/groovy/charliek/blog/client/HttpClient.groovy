@@ -23,7 +23,7 @@ class HttpClient extends UrlConnectionClient {
 
     private static OkHttpClient buildOkClient(HttpConfiguration httpConfiguration) {
         OkHttpClient client = new OkHttpClient()
-        if(httpConfiguration.proxyUrl != null) {
+        if(httpConfiguration.proxyUrl) {
             URL url = new URL(httpConfiguration.proxyUrl)
             Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress(url.host, url.port))
             client.setProxy(proxy)

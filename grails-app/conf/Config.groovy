@@ -124,11 +124,15 @@ log4j = {
     }
 }
 
+defaultEnvironment = [
+        'CLIENT_PREFIX': 'http://localhost:5678',
+        'PROXY_URL' : ''
+]
+
 httpClientConfig {
     connectionTimeOut = TimeUnit.SECONDS.toMillis(2)
     readTimeout = TimeUnit.SECONDS.toMillis(2)
-    proxyUrl = null
-//    proxyUrl = 'http://localhost:8888'
+    proxyUrl = '${PROXY_URL}'
 }
 
 github {
@@ -137,13 +141,14 @@ github {
 
     // It is required that you change these keys before the application will work
     // Visit https://github.com/settings/applications to setup your application
-    clientID = 'xxxxxxxxxxxxxxxxxxxx'
-    clientSecret = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+    clientID = '${GITHUB_CLIENT_ID}'
+    clientSecret = '${GITHUB_SECRET}'
 }
 
 clients {
     blog {
-        url = 'http://localhost:5678'
+        // Allow client prefix to be set by environment variables with defaults set in config
+        url = '${CLIENT_PREFIX}'
         apis = [
                 'charliek.blog.client.BlogApi'
         ]
