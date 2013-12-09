@@ -5,13 +5,15 @@
     <title>Charlie Knudsen Blog</title>
 </head>
 <body>
-    <article>
-        <h3 class="post_title">${post.title}</h3>
-        <span class="post_date">${post.datePublished}</span>
-        <span class="post_author">${post.author.name}</span>
-        <div class="post_body">
-            ${post.body}
+    <div class="row featurette">
+        <div class="col-md-12">
+            <h2 class="featurette-heading">${post.title}</h2>
+            <div>
+                <span class="post_author">${post.author.name}</span>
+                <span class="post_date">${post.datePublished}</span>
+            </div>
+            <p class="lead">${post.body}</p>
         </div>
-    </article>
+    </div>
 </body>
 </html>
