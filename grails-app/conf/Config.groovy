@@ -124,6 +124,13 @@ log4j = {
     }
 }
 
+jodatime {
+    format.org.joda.time.DateTime = "yyyy-MM-dd HH:mm:ss"
+    format.org.joda.time.LocalDate = "yyyy-MM-dd"
+    format.org.joda.time.LocalTime = "HH:mm:ss"
+    format.org.joda.time.LocalDateTime = "MMM dd, yyyy"
+}
+
 defaultEnvironment = [
         'CLIENT_PREFIX': 'http://localhost:5678',
         'PROXY_URL' : ''

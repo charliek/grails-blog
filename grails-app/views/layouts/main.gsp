@@ -26,7 +26,7 @@
             <ul class="nav navbar-nav">
                 %{--<li class="${(params.controller == 'post')? 'active' : ''}"><g:link controller="post" action="list">Posts</g:link></li>--}%
                 %{--<li class="${(params.controller == 'about')? 'active' : ''}"><g:link controller="about">About</g:link></li>--}%
-                <li class="active"><a href="https://github.com/charliek">GitHub</a></li>
+                <li><a href="https://github.com/charliek">GitHub</a></li>
                 <li><a href="https://twitter.com/cjknudsen">Twitter</a></li>
             </ul>
         </div><!--/.navbar-collapse -->

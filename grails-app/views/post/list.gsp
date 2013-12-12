@@ -10,8 +10,8 @@
             <div class="col-md-12">
                 <h2 class="featurette-heading"><g:link controller="post" action="show" params="['slug': post.slug, 'author': post.author.githubUser]">${post.title}</g:link></h2>
                 <div>
-                    <span class="post_author">${post.author.name}</span>
-                    <span class="post_date">${post.datePublished}</span>
+                    <div class="post_author">${post.author.name}</div>
+                    <div class="post_date"><joda:format value="${post.datePublished}"/></div>
                 </div>
                 <p class="lead">${post.body}</p>
             </div>

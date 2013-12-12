@@ -37,8 +37,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         test 'org.spockframework:spock-grails-support:0.7-groovy-2.0'
-//        test 'cglib:cglib-nodep:2.2.2'
-//        test 'org.objenesis:objenesis:1.2'
+        test 'cglib:cglib-nodep:2.2.2'
+        test 'org.objenesis:objenesis:1.2'
 
         compile('com.github.charliek.service:blog-api:0.0.1') {
             excludes group: 'org.codehaus.groovy', module: 'groovy-all'
@@ -46,7 +46,6 @@ grails.project.dependency.resolution = {
 
 //        compile 'org.pegdown:pegdown:1.4.1'
         compile 'com.google.guava:guava:15.0'
-        compile 'joda-time:joda-time:2.3'
 
         compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'
         compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.2.3'
@@ -63,6 +62,7 @@ grails.project.dependency.resolution = {
             exclude 'spock-grails-support'
         }
         compile ":fields:1.3"
+        compile ":joda-time:1.4"
         build ":tomcat:$grailsVersion"
     }
 }
