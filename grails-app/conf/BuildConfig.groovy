@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
             excludes group: 'org.codehaus.groovy', module: 'groovy-all'
         }
 
-//        compile 'org.pegdown:pegdown:1.4.1'
+        compile 'org.commonjava.googlecode.markdown4j:markdown4j:2.2-cj-1.0'
         compile 'com.google.guava:guava:15.0'
 
         compile 'com.fasterxml.jackson.core:jackson-databind:2.2.3'

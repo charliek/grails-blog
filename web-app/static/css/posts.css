@@ -216,3 +216,10 @@ a:hover {
         box-shadow: none;
     }
 }
+
+/** Post stuff **/
+article.post h1 {
+    font-size: 30px;
+    color: #006400;
+    font-style: italic;
+}
