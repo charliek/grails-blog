@@ -45,6 +45,7 @@
         var opts = {
             basePath: '//' + window.location.host,
             textarea: 'bodytext',
+            clientSideStorage: false,
             theme: {
                 base: '/static/epiceditor/themes/base/epiceditor.css',
                 preview: '/static/epiceditor/themes/preview/github.css',
