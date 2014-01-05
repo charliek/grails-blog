@@ -134,6 +134,7 @@ jodatime {
 
 defaultEnvironment = [
         'CLIENT_PREFIX': 'http://localhost:5678',
+        'ETCD_URL': 'http://127.0.0.1:4001',
         'PROXY_URL' : ''
 ]
 
