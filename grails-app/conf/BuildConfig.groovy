@@ -33,6 +33,8 @@ grails.project.dependency.resolution = {
         mavenRepo "http://dl.bintray.com/content/charliek/maven"
     }
 
+    String ribbonExtVersion = '0.0.1'
+
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
@@ -55,6 +57,10 @@ grails.project.dependency.resolution = {
         compile 'com.squareup.retrofit:retrofit-converters:1.3.0'
         compile 'com.squareup.retrofit:converter-jackson:1.3.0'
         compile 'com.squareup.okhttp:okhttp:1.2.1'
+
+        compile "com.charlieknudsen.ribbon-ext:ribbon-retrofit:${ribbonExtVersion}"
+        compile "com.charlieknudsen.ribbon-ext:ribbon-etcd:${ribbonExtVersion}"
+        compile "com.charlieknudsen.ribbon-ext:etcd-client:${ribbonExtVersion}"
     }
 
     plugins {
@@ -63,6 +69,7 @@ grails.project.dependency.resolution = {
         }
         compile ":fields:1.3"
         compile ":joda-time:1.4"
+//        compile ":cookie-session:2.0.13"
         build ":tomcat:$grailsVersion"
     }
 }

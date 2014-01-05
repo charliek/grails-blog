@@ -117,6 +117,7 @@ log4j = {
     if (currentEnvironment in [DEVELOPMENT, TEST, CUSTOM]) {
         debug 'spring.BeanBuilder'
         debug 'charliek'
+        debug 'com.charlieknudsen'
     } else {
         info 'grails.app'
         info 'grails.app.filters.LoggingFilters'
@@ -142,6 +143,30 @@ httpClientConfig {
     proxyUrl = '${PROXY_URL}'
 }
 
+etcd {
+    enabled = true
+
+    ribbon {
+        MaxAutoRetries=2
+        MaxAutoRetriesNextServer=1
+        OkToRetryOnAllOperations=true
+        ServerListRefreshInterval=2000
+        ribbon.ConnectTimeout=3000
+        ribbon.ReadTimeout=3000
+        ClientClassName='com.charlieknudsen.ribbon.retrofit.LoadBalancedClient'
+        NIWSServerListClassName='com.charlieknudsen.ribbon.etcd.EtcdServerList'
+    }
+
+    client {
+        host = '${ETCD_URL}'
+    }
+    publish {
+        host = '127.0.0.1'
+        ttlSeconds = 10
+        publishSeconds = 3
+    }
+}
+
 github {
     reauthenticateUrl = 'https://github.com/login/oauth/authorize'
     applicationScope = 'repo'
@@ -156,8 +181,8 @@ clients {
     blog {
         // Allow client prefix to be set by environment variables with defaults set in config
         url = '${CLIENT_PREFIX}'
-        apis = [
-                'charliek.blog.client.BlogApi'
-        ]
+        discover = true
+        name = 'blog-service'
+        apis = [ 'charliek.blog.client.BlogApi' ]
     }
 }
