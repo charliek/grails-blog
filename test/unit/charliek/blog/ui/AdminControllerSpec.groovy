@@ -65,10 +65,11 @@ class AdminControllerSpec extends Specification {
         1 * blogApi.getPostBySlug(author.id, slug) >> post
         0 * _
 
-        assert model.size() == 3
+        assert model.size() == 4
         assert ! model.newPost
         assert model.post.is(post)
         assert model.errors == []
+        assert model.success
     }
 
     def 'editing existing post with no errors'() {
@@ -86,10 +87,11 @@ class AdminControllerSpec extends Specification {
         1 * blogApi.updatePost(post.id, {it.id == 1}) >> post
         0 * _
 
-        assert model.size() == 3
+        assert model.size() == 4
         assert ! model.newPost
         assert model.post == post
         assert model.errors == []
+        assert model.success
     }
 
     def 'editing existing post with errors'() {
@@ -110,13 +112,14 @@ class AdminControllerSpec extends Specification {
         1 * blogApi.updatePost(post.id, {it.id == 1}) >> {throw RetrofitError.httpError(null, errorResponse, new JacksonConverter(new ObjectMapper()), null)}
         0 * _
 
-        assert model.size() == 3
+        assert model.size() == 4
         assert ! model.newPost
         assert model.post.id == post.id
         assert model.post.slug == post.slug
         assert model.post.author == author
         assert ! model.post.draft
         assert model.errors == [errorMsg]
+        assert ! model.success
     }
 
     private Response buildErrorResponse(Errors errors) {

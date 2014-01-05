@@ -11,9 +11,11 @@
 <h3>Edit Post</h3>
 
 <g:each in="${errors}" var="error">
-    <div class="error-msg">${error}</div>
+    <div class="alert alert-danger">${error}</div>
 </g:each>
-
+<g:if test="${success}">
+    <div class="alert alert-success">Post was saved! <g:link controller="admin" action="index">Back to post list.</g:link></div>
+</g:if>
 
 <div class="form-container">
     <g:form method="post" controller="admin" action="edit" role="form">

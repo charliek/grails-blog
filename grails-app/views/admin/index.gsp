@@ -17,7 +17,7 @@
             <g:each in="${posts}" var="post">
                 <tr>
                     <td><g:link controller="admin" action="edit" id="${post.slug}">${post.title}</g:link></td>
-                    <td class="post_status_${(post.draft)? 'draft' : 'published'}">${post.datePublished}</td>
+                    <td class="post_status_${(post.draft)? 'draft' : 'published'}"><joda:format value="${post.datePublished}"/></td>
                 </tr>
             </g:each>
         </tbody>

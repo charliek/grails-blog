@@ -28,6 +28,7 @@ class AdminController {
         Post post = new Post()
         boolean newPost = true
         List<String> errors = []
+        boolean success = false
 
         if(request.method == 'POST') {
             post = command.toPost()
@@ -40,17 +41,19 @@ class AdminController {
                     post = blogApi.updatePost(post.id, post)
                 }
                 newPost = false
+                success = true
             } catch (RetrofitError e) {
                 errors.addAll(handleErrors(e))
             }
         } else {
+            success = true
             String slug = params.id as String
             if(slug) {
                 post = blogApi.getPostBySlug(author.id, slug)
                 newPost = false
             }
         }
-        return ['post': post, 'newPost': newPost, 'errors': errors]
+        return ['post': post, 'newPost': newPost, 'errors': errors, 'success': success]
     }
 
     private List<String> handleErrors(RetrofitError e) {
