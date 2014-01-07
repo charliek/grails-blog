@@ -182,7 +182,7 @@ clients {
     blog {
         // Allow client prefix to be set by environment variables with defaults set in config
         url = '${CLIENT_PREFIX}'
-        discover = true
+        discover = false
         name = 'blog-service'
         apis = [ 'charliek.blog.client.BlogApi' ]
     }
