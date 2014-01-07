@@ -45,10 +45,11 @@ beans = {
     String etcdHost = Variables.substituteEnvironment(grailsApplication.config.etcd.client.host, grailsApplication.config.defaultEnvironment)
 
     if ( grailsApplication.config.etcd.enabled ) {
+        String publishHost = Variables.substituteEnvironment(grailsApplication.config.etcd.publish.host, grailsApplication.config.defaultEnvironment)
         RibbonUtil.initializeRibbonDefaults(grailsApplication.config.etcd.ribbon)
 //        RibbonUtil.setConfigValue('ribbon.EtcdHost', etcdHost)
         etcdClient(EtcdClient, etcdHost)
-        etcdPublisher(EtcdPublisher, ref('etcdClient'), grailsApplication.config.etcd.publish.host, 8080, 'grails-blog')
+        etcdPublisher(EtcdPublisher, ref('etcdClient'), publishHost, 8080, 'grails-blog')
     }
 
     // TODO move snake case setup to general config

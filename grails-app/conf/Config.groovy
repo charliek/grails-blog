@@ -92,13 +92,7 @@ log4j = {
 
     // environment specific overrides
     root {
-        if (currentEnvironment in [DEVELOPMENT]) {
-            info('stdout', 'logfile')
-        } else if (currentEnvironment in [TEST, CUSTOM]) {
-            info('logfile')
-        } else {
-            warn('logfile')
-        }
+        info('stdout')
         additivity = false
     }
 
@@ -122,6 +116,7 @@ log4j = {
         info 'grails.app'
         info 'grails.app.filters.LoggingFilters'
         info 'charliek'
+        debug 'com.charlieknudsen'
     }
 }
 
@@ -135,6 +130,7 @@ jodatime {
 defaultEnvironment = [
         'CLIENT_PREFIX': 'http://localhost:5678',
         'ETCD_URL': 'http://127.0.0.1:4001',
+        'HOST_IP': '127.0.0.1',
         'PROXY_URL' : ''
 ]
 
@@ -162,7 +158,7 @@ etcd {
         host = '${ETCD_URL}'
     }
     publish {
-        host = '127.0.0.1'
+        host = '${HOST_IP}'
         ttlSeconds = 10
         publishSeconds = 3
     }
