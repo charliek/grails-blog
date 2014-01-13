@@ -1,8 +1,11 @@
+import org.apache.log4j.net.SyslogAppender
+
 import java.util.concurrent.TimeUnit
 import static grails.util.Environment.DEVELOPMENT
 import static grails.util.Environment.CUSTOM
 import static grails.util.Environment.TEST
 import static grails.util.Environment.currentEnvironment
+import static org.apache.log4j.Level.ALL
 
 def configLocation = System.getenv('BLOOM_CONFIG_LOCATION') ?: System.getenv('grails.work.dir') ?: "${userHome}/.grails"
 def configFilePath = "file:$configLocation/${appName}-config.groovy"
@@ -88,11 +91,17 @@ log4j = {
         def logfile = "logs/blog-${currentEnvironment}.log"
         appender new org.apache.log4j.DailyRollingFileAppender(name: 'logfile',
                 fileName: logfile, datePattern: "'.'yyyy-MM-dd", layout: logPattern)
+
+        appender new SyslogAppender(name:"syslog",
+                syslogHost: "localhost:514",
+                facility: "local1",
+                threshold: ALL,
+                layout: pattern(conversionPattern:"grails-blog [%p] %-25.25c{2} %m%n"))
     }
 
-    // environment specific overrides
     root {
         info('stdout')
+        info('syslog')
         additivity = false
     }
 
