@@ -67,9 +67,9 @@ grails.project.dependency.resolution = {
         test(':spock:0.7') {
             exclude 'spock-grails-support'
         }
+        compile ":scaffolding:2.0.3"
         compile ":fields:1.3"
         compile ":joda-time:1.4"
-//        compile ":cookie-session:2.0.13"
-        build ":tomcat:$grailsVersion"
+        build ':tomcat:7.0.40.1'
     }
 }
