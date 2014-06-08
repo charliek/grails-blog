@@ -10,4 +10,5 @@ before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
 
 script:
-  - gradle build buildDeb
+  - gradle build
+  - ls -l *
