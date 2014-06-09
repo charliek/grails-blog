@@ -89,7 +89,7 @@ debian {
             excludes = ["**/.DS_Store"]
         }
         file {
-            name = "${buildDir}/${project.name}-${project.version}.war"
+            name = "${buildDir}/blog-${project.version}.war"
             target = "usr/share/${debName}/application.war"
         }
     }
