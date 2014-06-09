@@ -12,3 +12,4 @@ before_install:
 script:
   - gradle build
   - ls -l *
+  - gradle buildDeb
