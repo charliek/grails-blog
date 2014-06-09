@@ -10,6 +10,6 @@ before_install:
   - export PATH=$GRADLE_HOME/bin:$PATH
 
 script:
-  - gradle build
-  - ls -l *
-  - gradle buildDeb
+  - gradle check
+  - gradle -PgrailsEnv=prod grails-war
+  - gradle -PgrailsEnv=prod buildDeb

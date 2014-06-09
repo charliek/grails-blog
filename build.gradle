@@ -78,7 +78,7 @@ String debName = 'grails-blog'
 
 debian {
     packagename = debName
-    publications = ['trusty']
+    publications = []
     controlDirectory = "${projectDir}/debian/control"
     changelogFile = "${projectDir}/debian/changelog"
     outputFile = "${buildDir}/${debName}_${version}_all.deb"

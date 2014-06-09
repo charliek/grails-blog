@@ -2,7 +2,7 @@ Package: [[name]]
 Version: [[version]]
 Section: base
 Priority: optional
-Architecture: any
+Architecture: all
 Depends: openjdk-7-jre-headless, jetty-runner (= 9.1.0)
 Maintainer: Charlie Knudsen <charlie.knudsen@gmail.com>
 Description: Grails Blog Frontend
