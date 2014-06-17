@@ -5,9 +5,12 @@ import com.charlieknudsen.ribbon.retrofit.RibbonClient
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.netflix.client.ClientFactory
 import com.netflix.config.ConfigurationManager
+import groovy.transform.CompileStatic
+import retrofit.RequestInterceptor
 import retrofit.RestAdapter
 import retrofit.converter.JacksonConverter
 
+@CompileStatic
 class RetrofitClientFactory {
 
     ObjectMapper objectMapper
@@ -17,7 +20,7 @@ class RetrofitClientFactory {
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setServer(endpoint)
                 .setConverter(new JacksonConverter(objectMapper))
-                .setClient(httpClient)
+                .setClient(new LoggingClient(httpClient))
                 .build()
         return restAdapter.create(clazz)
     }

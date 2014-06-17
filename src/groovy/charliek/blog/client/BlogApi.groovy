@@ -2,12 +2,14 @@ package charliek.blog.client
 
 import charliek.blog.transfer.Author
 import charliek.blog.transfer.Post
+import groovy.transform.CompileStatic
 import retrofit.http.Body
 import retrofit.http.GET
 import retrofit.http.POST
 import retrofit.http.PUT
 import retrofit.http.Path
 
+@CompileStatic
 interface BlogApi {
 
     @GET('/post')

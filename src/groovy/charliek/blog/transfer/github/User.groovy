@@ -1,10 +1,12 @@
 package charliek.blog.transfer.github
 
+import groovy.transform.CompileStatic
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
 @EqualsAndHashCode
 @ToString
+@CompileStatic
 class User {
     String email
     String type

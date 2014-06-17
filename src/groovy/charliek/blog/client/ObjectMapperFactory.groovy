@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.MapperFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategy
 import com.fasterxml.jackson.datatype.joda.JodaModule
+import groovy.transform.CompileStatic
 
+@CompileStatic
 class ObjectMapperFactory {
 
     ObjectMapper build() {

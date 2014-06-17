@@ -7,9 +7,10 @@ import static grails.util.Environment.TEST
 import static grails.util.Environment.currentEnvironment
 import static org.apache.log4j.Level.ALL
 
-def configLocation = System.getenv('BLOOM_CONFIG_LOCATION') ?: System.getenv('grails.work.dir') ?: "${userHome}/.grails"
-def configFilePath = "file:$configLocation/${appName}-config.groovy"
+def configLocation = System.getenv('CONFIG_LOCATION') ?: System.getenv('grails.work.dir') ?: "${userHome}/.grails"
+def configFilePath = "file:$configLocation/grails-blog.groovy"
 println "**** Externalized config file directory is $configFilePath"
+System.env.each { k, v -> println "${k} : ${v}" }
 grails.config.locations = [configFilePath]
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
@@ -150,7 +151,7 @@ httpClientConfig {
 }
 
 etcd {
-    enabled = true
+    enabled = false
 
     ribbon {
         MaxAutoRetries=2

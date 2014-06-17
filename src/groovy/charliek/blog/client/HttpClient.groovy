@@ -1,11 +1,13 @@
 package charliek.blog.client
 
 import com.squareup.okhttp.OkHttpClient
+import groovy.transform.CompileStatic
 import retrofit.client.Request
 import retrofit.client.UrlConnectionClient
 
 import java.util.concurrent.TimeUnit
 
+@CompileStatic
 class HttpClient extends UrlConnectionClient {
     private final OkHttpClient client
 

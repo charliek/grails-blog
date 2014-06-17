@@ -1,10 +1,12 @@
 package charliek.blog.client
 
 import com.netflix.config.ConfigurationManager
+import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import org.apache.commons.configuration.AbstractConfiguration
 
 @Slf4j
+@CompileStatic
 class RibbonUtil {
 
     private static AbstractConfiguration archaiusConfig = ConfigurationManager.getConfigInstance()
